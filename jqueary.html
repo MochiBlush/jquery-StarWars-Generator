@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery</title>
+</head>
+
+<style>
+h1{
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: white;
+}
+
+h2 {
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: white;
+}
+
+body{
+    background-image:url('stars.jpeg');
+    background-size: auto;
+}
+
+.char-img{
+    text-align: center;
+}
+
+button{
+    border-radius: 4px;
+    
+}
+
+</style>
+
+
+<body>
+    <div class="char-img">   
+<button id="gen">Get your Starwars Character!</button>
+    <br>
+<img src="" class="char-img" alt="" height="500">
+</div>
+<h1 class="name"></h1>
+<h2 class="species"></h2>
+<h2 class="homeworld"></h2>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+<script>
+
+$(document).ready(function() {
+
+
+    $("button").on("click", function() {
+        const randomNumber = Math.ceil(Math.random() * 88)
+        $.get(`https://rawcdn.githack.com/akabab/starwars-api/0.2.1/api/id/${randomNumber}.json`, function(data){
+        $('h1.name').text(data['name'])
+        $('h2.species').text(data['species'])
+        $('h2.homeworld').text(data['homeworld'])
+        $('.char-img').attr("src", data ['image'])
+        })
+    
+    
+    })
+
+
+})
+
+</script>
+
+
+</body>
+</html>
